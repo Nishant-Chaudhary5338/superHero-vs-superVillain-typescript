@@ -1,17 +1,17 @@
 /** @format */
 
 import { FC, memo } from "react";
-import { Villain } from "./models/Villain";
+import { Villain } from "../models/Villain";
 type VillainRowProps = { villain: Villain };
 
 const VillainRow: FC<VillainRowProps> = ({ villain }) => {
   return (
     <>
-      <div className="m-6 bg-purple-300 border-2 border-black sm:flex">
+      <div className="m-6 bg-purple-300 border-2 border-black sm:w-1/2 sm:flex">
         <div>
           <img className="h-80 w-80" src={villain.images.md} alt="" />
         </div>
-        <div className="ml-2">
+        <div className="ml-4">
           <p className="text-3xl font-bold text-center text-red-500">
             {villain.biography.publisher}
           </p>
