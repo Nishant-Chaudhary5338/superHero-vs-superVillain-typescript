@@ -1,18 +1,18 @@
 /** @format */
 
 import { FC, memo, useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { FETCHED_VILLAINS_ACTION } from "../Actions/actions";
 import { getVillain } from "../api";
-import Button from "../components/Button";
-import { Villain } from "../models/Villain";
-import VillainRow from "../components/VillainRow";
+import VillainList from "../components/VillainList";
 type VillainPageProps = {};
 
 const VillainPage: FC<VillainPageProps> = (props) => {
-  const [displayVillain, setDisplayVillain] = useState<Villain[]>([]);
+  const dispatch = useDispatch();
   const fetchVillain = () => {
     const token = getVillain();
     token.then((v) => {
-      setDisplayVillain(v);
+      dispatch(FETCHED_VILLAINS_ACTION(v));
       console.log(v);
     });
   };
@@ -21,21 +21,7 @@ const VillainPage: FC<VillainPageProps> = (props) => {
   }, []);
   return (
     <div>
-      <Button onClick={fetchVillain} theme="villain">
-        Give me Villains
-      </Button>
-      <div
-        style={{
-          backgroundImage: `url("https://cdn.mos.cms.futurecdn.net/WRVqmiSCwAGdKyMFEKVewa.jpg")`,
-        }}
-        className="flex-wrap justify-between object-fill h-full px-10 mt-10 sm:flex"
-      >
-        <div className="">
-          {displayVillain.map((v) => (
-            <VillainRow key={v.id} villain={v}></VillainRow>
-          ))}
-        </div>
-      </div>
+      <VillainList fetchVillain={fetchVillain}></VillainList>
     </div>
   );
 };

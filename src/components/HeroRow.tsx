@@ -1,7 +1,7 @@
 /** @format */
 
 import { FC, memo } from "react";
-import { Hero } from "./models/Hero";
+import { Hero } from "../models/Hero";
 type HeroRowProps = { hero: Hero };
 
 const HeroRow: FC<HeroRowProps> = ({ hero }) => {
