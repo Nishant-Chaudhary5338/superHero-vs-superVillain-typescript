@@ -2,15 +2,14 @@
 
 import { FC, memo, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { FETCHED_HEROES_ACTION } from "../Actions/actions";
+import { FETCHED_HEROES_ACTION } from "../actions/heroes";
 import { getHero } from "../api";
 import HeroList from "../components/HeroList";
-import { herotypesSelector } from "../selector";
 
 type HeroPageProps = {};
 
 const HeroPage: FC<HeroPageProps> = () => {
-  const dispatch = useDispatch();
+  /* const dispatch = useDispatch();
 
   const fetchHero = () => {
     const token = getHero();
@@ -18,7 +17,7 @@ const HeroPage: FC<HeroPageProps> = () => {
       dispatch(FETCHED_HEROES_ACTION(h));
       console.log(h);
     });
-  };
+  };*/
 
   useEffect(() => {
     document.body.style.backgroundImage = `url(${"https://images.unsplash.com/photo-1612036782180-6f0b6cd846fe?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"})`;
@@ -26,7 +25,7 @@ const HeroPage: FC<HeroPageProps> = () => {
 
   return (
     <div>
-      <HeroList fetchHero={fetchHero}></HeroList>
+      <HeroList></HeroList>
     </div>
   );
 };

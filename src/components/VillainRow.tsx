@@ -1,13 +1,15 @@
 /** @format */
 
-import { FC, memo } from "react";
+import { FC, JSXElementConstructor, memo } from "react";
 import { Villain } from "../models/Villain";
-type VillainRowProps = { villain: Villain };
+type VillainRowProps = {
+  villain: Villain;
+};
 
 const VillainRow: FC<VillainRowProps> = ({ villain }) => {
   return (
-    <>
-      <div className="m-6 bg-purple-300 border-2 border-black sm:w-1/2 sm:flex">
+    <div>
+      <div className="m-6 bg-purple-300 border-2 border-black sm:mx-60 sm:flex">
         <div>
           <img className="h-80 w-80" src={villain.images.md} alt="" />
         </div>
@@ -56,7 +58,7 @@ const VillainRow: FC<VillainRowProps> = ({ villain }) => {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

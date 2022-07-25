@@ -2,6 +2,7 @@
 
 import { FC, memo } from "react";
 import { connect } from "react-redux";
+import { FETCH_HEROES_ACTION } from "../actions/heroes";
 import { Hero } from "../models/Hero";
 import { herotypesSelector } from "../selector";
 import { State } from "../store";
@@ -15,7 +16,7 @@ type HeroListProps = {
 const HeroList: FC<HeroListProps> = ({ heroes, fetchHero }) => {
   return (
     <div>
-      <div className="justify-between mt-10 sm:flex sm:mx-40">
+      <div className="text-center">
         <Button onClick={fetchHero} theme="hero">
           Give me Heroes!!
         </Button>
@@ -26,9 +27,16 @@ const HeroList: FC<HeroListProps> = ({ heroes, fetchHero }) => {
         }}
         className="flex-wrap justify-between object-fill h-full px-10 mt-10 sm:flex"
       >
-        <div className="w-4/5 sm:w-1/2">
+        <div className="">
           {heroes.map((h) => (
-            <HeroRow key={h.id} hero={h}></HeroRow>
+            <div className="relative">
+              <div className="hover:opacity-0">
+                <HeroRow key={h.id} hero={h}></HeroRow>
+              </div>
+              <div className="absolute inset-0 flex items-center justify-center space-x-6 transition ease-in-out bg-green-300 opacity-0 sm:mx-60 hover:opacity-100">
+                <Button theme="both">Add to favourite</Button>
+              </div>
+            </div>
           ))}
         </div>
       </div>
@@ -41,5 +49,8 @@ HeroList.defaultProps = {};
 const mapStateToProps = (s: State) => ({
   heroes: herotypesSelector(s),
 });
+const mapper = {
+  fetchHero: FETCH_HEROES_ACTION,
+};
 
-export default connect(mapStateToProps)(memo(HeroList));
+export default connect(mapStateToProps, mapper)(memo(HeroList));

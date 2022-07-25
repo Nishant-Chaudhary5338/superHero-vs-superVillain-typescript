@@ -6,7 +6,7 @@ type HeroRowProps = { hero: Hero };
 
 const HeroRow: FC<HeroRowProps> = ({ hero }) => {
   return (
-    <div className="m-6 bg-green-300 border-2 border-black sm:flex">
+    <div className="m-6 bg-green-300 border-2 border-black sm:mx-60 sm:flex">
       <div>
         <img className="h-80 w-80" src={hero.images.md} alt="" />
       </div>

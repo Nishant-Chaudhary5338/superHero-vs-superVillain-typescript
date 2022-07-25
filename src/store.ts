@@ -1,9 +1,12 @@
 /** @format */
 
-import { AnyAction, createStore } from "redux";
-import { HEROES_FETCHED, VILLAINS_FETCHED } from "./Actions/actions";
+import { AnyAction, applyMiddleware, createStore } from "redux";
+import { composeWithDevTools } from "redux-devtools-extension";
+import { HEROES_FETCHED } from "./actions/heroes";
+import { VILLAINS_FETCHED } from "./actions/villains";
 import { Hero } from "./models/Hero";
 import { Villain } from "./models/Villain";
+import { rootSaga, sagaMiddleware } from "./sagas";
 
 export type State = {
   heroes: Hero[];
@@ -28,6 +31,6 @@ export const reducer = (state = initialState, action: AnyAction) => {
 
 export const store = createStore(
   reducer,
-  (window as any).__REDUX_DEVTOOLS_EXTENSION__ &&
-    (window as any).__REDUX_DEVTOOLS_EXTENSION__()
+  composeWithDevTools(applyMiddleware(sagaMiddleware))
 );
+sagaMiddleware.run(rootSaga);

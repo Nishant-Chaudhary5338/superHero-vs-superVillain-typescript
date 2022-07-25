@@ -14,7 +14,7 @@ function App() {
     <div className="">
       <NavBar></NavBar>
       <Routes>
-        <Route path="/home" element={<HomePage></HomePage>}></Route>
+        <Route path="/" element={<HomePage></HomePage>}></Route>
         <Route path="heroes" element={<HeroPage></HeroPage>}></Route>
         <Route path="villains" element={<VillainPage></VillainPage>}></Route>
       </Routes>
