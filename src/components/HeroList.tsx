@@ -30,7 +30,7 @@ const HeroList: FC<HeroListProps> = ({ heroes, fetchHero }) => {
         <div className="">
           {heroes.map((h) => (
             <div className="relative">
-              <div className="hover:opacity-0">
+              <div className="">
                 <HeroRow key={h.id} hero={h}></HeroRow>
               </div>
               <div className="absolute inset-0 flex items-center justify-center space-x-6 transition ease-in-out bg-green-300 opacity-0 sm:mx-60 hover:opacity-100">
